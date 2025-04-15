@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg7lby2s4ti1h"]
+
+[ext_resource type="Script" uid="uid://diwjolm5xrv1b" path="res://scripts/player_controller.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://bffxqj26bl2yu" path="res://scripts/force/force_layer.gd" id="2_dqkch"]
+[ext_resource type="Script" uid="uid://d8s0ovko1hnj" path="res://scripts/force/force_layer_controller.gd" id="2_qlg0r"]
+[ext_resource type="Script" uid="uid://dkcqu57yykml" path="res://scripts/force/force.gd" id="3_qlg0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qhqgy")
+
+[node name="ForceLayerController" type="Node" parent="." node_paths=PackedStringArray("layers")]
+script = ExtResource("2_qlg0r")
+layers = [NodePath("../ForceLayer")]
+
+[node name="ForceLayer" type="Node" parent="."]
+script = ExtResource("2_dqkch")
+
+[node name="Force" type="Node" parent="ForceLayer"]
+script = ExtResource("3_qlg0r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qhqgy")
