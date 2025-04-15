@@ -1,5 +1,8 @@
 extends Node
+## Class designed to contain groups of Forces and manage them
 class_name ForceLayer
+
+@export var enabled : bool = false
 
 var _forces: Array[Force]
 
@@ -10,11 +13,6 @@ func _ready() -> void:
 
 func get_combined_velocity() -> Vector2:
 	var velocity : Vector2 = Vector2.ZERO
-
 	for force in _forces:
-		velocity += force.get_velocity() if is_active() else Vector2.ZERO
-
+		velocity += force.get_velocity()
 	return velocity
-
-func is_active() -> bool:
-	return true
