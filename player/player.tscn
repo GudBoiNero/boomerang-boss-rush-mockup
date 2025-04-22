@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bg7lby2s4ti1h"]
+[gd_scene load_steps=9 format=3 uid="uid://bg7lby2s4ti1h"]
 
 [ext_resource type="Script" uid="uid://d2i77m8wlvcj2" path="res://player/player_controller.gd" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://phcjelw7diah" path="res://player/player.png" id="2_rkbax"]
@@ -6,12 +6,20 @@
 [ext_resource type="Script" uid="uid://jfdxad63xurn" path="res://player/cursor.gd" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dov6qdyj12hnt" path="res://player/arrow.png" id="4_yw30f"]
 
+[sub_resource type="Curve" id="Curve_qjkh3"]
+_data = [Vector2(0, 0), 0.0, 1.63514, 0, 0, Vector2(0.639053, 0.94382), 1.35634, 1.35634, 0, 0, Vector2(1, 0.786517), -1.08507, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_g6k8r"]
+curve = SubResource("Curve_qjkh3")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(10, 8)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("momentum_velocity_layer")]
 script = ExtResource("1_qhqgy")
 momentum_velocity_layer = NodePath("MomentumVelocityLayer")
+br_distance_curve = SubResource("CurveTexture_g6k8r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
