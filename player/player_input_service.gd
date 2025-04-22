@@ -58,7 +58,7 @@ func get_aim() -> Vector2:
 			if raw_input.length() >= deadzone:
 				input_vec = raw_input.normalized()
 	elif input_vec == Vector2.ZERO:
-		var mouse_vec := get_global_mouse_position() - center + get_viewport_transform().get_origin()
+		var mouse_vec := get_local_mouse_position() - center + get_viewport_transform().get_origin()
 		input_vec = mouse_vec.normalized()
 
 	return input_vec

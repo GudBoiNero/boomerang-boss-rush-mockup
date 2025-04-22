@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 
 @export_group("Velocity Layers")
 @export var momentum_velocity_layer : PlayerMomentumVelocityLayer
