@@ -7,8 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(10, 8)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("momentum_velocity_layer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cursor", "momentum_velocity_layer")]
 script = ExtResource("1_qhqgy")
+cursor = NodePath("Cursor")
 momentum_velocity_layer = NodePath("MomentumVelocityLayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,3 +24,6 @@ texture = ExtResource("2_rkbax")
 [node name="MomentumVelocityLayer" type="Node" parent="."]
 script = ExtResource("3_g1dw6")
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
+
+[node name="Cursor" type="Sprite2D" parent="."]
+texture = ExtResource("2_rkbax")

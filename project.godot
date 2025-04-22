@@ -49,6 +49,22 @@ down={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
+kick={
+"deadzone": 0.2,
+"events": []
+}
+evade={
+"deadzone": 0.2,
+"events": []
+}
+throw_right={
+"deadzone": 0.2,
+"events": []
+}
+throw_left={
+"deadzone": 0.2,
+"events": []
+}
 
 [rendering]
 

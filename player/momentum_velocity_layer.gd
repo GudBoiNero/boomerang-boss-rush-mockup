@@ -5,5 +5,5 @@ class_name PlayerMomentumVelocityLayer
 
 func _velocity_physics_process(delta: float) -> void:
 	var input := PlayerInputService.get_input_raw()
-	print(input)
+	PlayerInputService.get_aim()
 	_velocity = input * delta * SPEED

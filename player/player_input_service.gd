@@ -1,4 +1,13 @@
-extends Node
+extends Node2D
+
+var is_kbm: bool = true
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey or event is InputEventMouse:
+		is_kbm = true
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		is_kbm = false
+
 
 func get_input_raw() -> Vector2:
 	var joypads := Input.get_connected_joypads()
@@ -13,7 +22,7 @@ func get_input_raw() -> Vector2:
 			)
 
 			# Apply deadzone to prevent stick drift
-			var deadzone := 0.1
+			var deadzone := 0.2
 			if input_vec.length() < deadzone:
 				input_vec = Vector2.ZERO
 
@@ -27,3 +36,29 @@ func get_input_raw() -> Vector2:
 
 func get_input() -> Vector2:
 	return get_input_raw().normalized()
+
+
+func get_aim() -> Vector2:
+	var rect := get_viewport().get_visible_rect().size
+	var center := rect / 2
+
+	var joypads := Input.get_connected_joypads()
+	var input_vec := Vector2.ZERO
+
+	if joypads.size() > 0 && !is_kbm:
+		var id = joypads[0]
+		if Input.is_joy_known(id):
+			var raw_input := Vector2(
+				Input.get_joy_axis(id, JOY_AXIS_RIGHT_X),
+				Input.get_joy_axis(id, JOY_AXIS_RIGHT_Y)
+			)
+
+			# Apply deadzone
+			var deadzone := 0.2
+			if raw_input.length() >= deadzone:
+				input_vec = raw_input.normalized()
+	elif input_vec == Vector2.ZERO:
+		var mouse_vec := get_global_mouse_position() - center + get_viewport_transform().get_origin()
+		input_vec = mouse_vec.normalized()
+
+	return input_vec
