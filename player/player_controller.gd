@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-@export var cursor : Sprite2D
-
 @export_group("Velocity Layers")
 @export var momentum_velocity_layer : PlayerMomentumVelocityLayer
 
@@ -11,8 +9,6 @@ func _ready() -> void:
 	_velocity_layers.push_back(momentum_velocity_layer)
 
 func _physics_process(delta: float) -> void:
-	cursor.position = PlayerInputService.get_aim() * 100
-
 	velocity = get_total_velocity()
 	move_and_slide()
 
