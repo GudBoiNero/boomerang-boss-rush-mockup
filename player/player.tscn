@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg7lby2s4ti1h"]
+[gd_scene load_steps=14 format=3 uid="uid://bg7lby2s4ti1h"]
 
 [ext_resource type="Script" uid="uid://d2i77m8wlvcj2" path="res://player/player_controller.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://cvui8oej1t1qi" path="res://components/state_machine.gd" id="2_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://phcjelw7diah" path="res://textures/entity/player.png" id="2_rkbax"]
+[ext_resource type="Texture2D" uid="uid://bwnigy3oubx0i" path="res://textures/projectile/boomerang.png" id="3_8t03j"]
 [ext_resource type="Script" uid="uid://0v2n6qgy202y" path="res://player/states/player_state_free.gd" id="3_boad6"]
 [ext_resource type="Script" uid="uid://byx8pa4toxg6x" path="res://player/player_momentum_velocity.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://ch4wjd67fwfr5" path="res://components/state.gd" id="4_8t03j"]
@@ -38,6 +39,11 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="BoomerangController" type="Node2D" parent="."]
+
+[node name="Anchor" type="Node2D" parent="BoomerangController"]
+
+[node name="BoomerangSprite" type="Sprite2D" parent="BoomerangController/Anchor"]
+texture = ExtResource("3_8t03j")
 
 [node name="Cursor" type="Node2D" parent="."]
 position = Vector2(0, 7)
