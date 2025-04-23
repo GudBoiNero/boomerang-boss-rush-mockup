@@ -6,53 +6,51 @@ class_name PlayerMomentumVelocity
 @export var SPRINT_SPEED := 16_000.0
 
 @export var WALK_TO_RUN_TRANSITION := 0.9
+@export_range(0, 1, 0.01) var ACCEL_TIME := 0.1  # Acceleration smoothing
+@export_range(0, 1, 0.01) var DECEL_TIME := 0.2  # Deceleration smoothing (friction)
 
-@export var ACCEL_TIME : float = 0.1  # Acceleration time
-@export var DECEL_TIME : float = 0.2   # Deceleration (friction) time
-
-var _target_speed := 0.0
 var _speed := WALK_SPEED
+var _target_speed := 0.0
 
-enum SpeedStates {
-	WALK, RUN, SPRINT
-}
-
+enum SpeedStates { WALK, RUN, SPRINT }
 var speed_state : SpeedStates = SpeedStates.WALK
 
 func _velocity_physics_process(delta: float) -> void:
 	var input := PlayerInputService.get_input()
 	PlayerInputService.get_aim()
 
-	# Determine max velocity for this frame
-	var max_velocity := _speed * delta
-	_velocity.limit_length(max_velocity)
+	update_speed_state(delta)
+	update_velocity(input, delta)
 
-	# Handle speed state transitions
+func update_speed_state(delta: float) -> void:
+	var speed_threshold := WALK_SPEED * delta * WALK_TO_RUN_TRANSITION
+	var current_speed := _velocity.length()
+
 	match speed_state:
 		SpeedStates.WALK:
-			var run_threshold := WALK_SPEED * delta * WALK_TO_RUN_TRANSITION
-			if _velocity.length() >= run_threshold or is_equal_approx(_velocity.length(), run_threshold):
+			if current_speed >= speed_threshold:
 				speed_state = SpeedStates.RUN
 			_speed = WALK_SPEED
 
 		SpeedStates.RUN:
-			var walk_threshold := WALK_SPEED * delta * WALK_TO_RUN_TRANSITION
-			if _velocity.length() <= walk_threshold or is_equal_approx(_velocity.length(), walk_threshold):
+			if current_speed <= speed_threshold:
 				speed_state = SpeedStates.WALK
 			_speed = RUN_SPEED
 
 		SpeedStates.SPRINT:
 			_speed = SPRINT_SPEED
 
-	# Compute target velocity from input and current speed
+func update_velocity(input: Vector2, delta: float) -> void:
+	var max_frame_velocity := _speed * delta
+	_velocity.limit_length(max_frame_velocity)
+
 	var target_velocity := _speed * input * delta
 
-	# Use different smoothing for accel vs decel
-	if input.length() > 0.01:
-		_velocity = _velocity.lerp(target_velocity, delta / ACCEL_TIME)
-	else:
-		_velocity = _velocity.lerp(Vector2.ZERO, delta / DECEL_TIME)
+	var smoothing := ACCEL_TIME if input.length() > 0.01 else DECEL_TIME
+	var target := target_velocity if input.length() > 0.01 else Vector2.ZERO
 
-	# Optional: hard stop if nearly zero
+	_velocity = _velocity.lerp(target, delta / smoothing)
+
+	# Hard stop for tiny velocity values
 	if _velocity.length() < 1.0:
 		_velocity = Vector2.ZERO
