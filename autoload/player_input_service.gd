@@ -12,7 +12,7 @@ func _input(event: InputEvent) -> void:
 			print("[%s]: Player switched to gamepad" % name)
 		is_kbm = false
 
-func get_input_raw() -> Vector2:
+func get_move_input_raw() -> Vector2:
 	var joypads := Input.get_connected_joypads()
 	var input_vec := Vector2.ZERO
 
@@ -37,12 +37,12 @@ func get_input_raw() -> Vector2:
 	return input_vec
 
 
-func get_input() -> Vector2:
-	var raw := get_input_raw()
+func get_move_input() -> Vector2:
+	var raw := get_move_input_raw()
 	return raw.limit_length(1.0) if raw.length() > 0.01 else Vector2.ZERO
 
 
-func get_aim() -> Vector2:
+func get_ai0m_input() -> Vector2:
 	var rect := get_viewport().get_visible_rect().size
 	var center := rect / 2
 
