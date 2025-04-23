@@ -34,9 +34,12 @@ func _physics_process(delta: float) -> void:
 func _velocity_physics_process(delta: float) -> void:
 	pass
 
-func _on_collision(collision: KinematicCollision2D) -> void:
-	var angle = rad_to_deg(collision.get_normal().angle())
-	print("Collision at angle: ", angle)
+func _on_collision(velocity: Vector2, collision: KinematicCollision2D) -> void:
+	var col_angle := rad_to_deg(collision.get_normal().angle())
+	var vel_angle := rad_to_deg(velocity.normalized().angle_to(collision.get_normal()))
+	var sum_angle := rad_to_deg((velocity.normalized() + collision.get_normal()).angle())
+	print(sum_angle)
+	%Cursor.rotation_degrees = sum_angle
 #endregion
 
 #region helpers

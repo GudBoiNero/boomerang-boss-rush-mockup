@@ -11,6 +11,7 @@ class_name PlayerController
 
 
 func _physics_process(delta: float) -> void:
-	velocity = velocity_controller.get_velocity()
+	var target := velocity_controller.get_velocity()
+	velocity = target
 	if move_and_slide():
-		velocity_controller.on_collision.emit(get_slide_collision(get_slide_collision_count() - 1))
+		velocity_controller.on_collision.emit(target, get_slide_collision(0))
