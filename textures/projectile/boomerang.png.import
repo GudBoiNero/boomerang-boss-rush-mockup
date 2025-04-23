@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dov6qdyj12hnt"
-path="res://.godot/imported/arrow.png-0f08de2aff7713893d085b9d32b49dd7.ctex"
+uid="uid://bwnigy3oubx0i"
+path="res://.godot/imported/boomerang.png-ece8a7d89d5cf9b649f3c8ac69a4ec01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-0f08de2aff7713893d085b9d32b49dd7.ctex"]
+source_file="res://textures/projectile/boomerang.png"
+dest_files=["res://.godot/imported/boomerang.png-ece8a7d89d5cf9b649f3c8ac69a4ec01.ctex"]
 
 [params]
 

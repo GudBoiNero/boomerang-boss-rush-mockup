@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwnigy3oubx0i"
-path="res://.godot/imported/boomerang.png-cdb3172d587bcbf622991cad31645307.ctex"
+uid="uid://g8xsp2ag3ttx"
+path="res://.godot/imported/tile.png-ef1e1455d06c902f8fe60f4bb6e1f1ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/boomerang.png"
-dest_files=["res://.godot/imported/boomerang.png-cdb3172d587bcbf622991cad31645307.ctex"]
+source_file="res://textures/tile/tile.png"
+dest_files=["res://.godot/imported/tile.png-ef1e1455d06c902f8fe60f4bb6e1f1ed.ctex"]
 
 [params]
 

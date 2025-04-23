@@ -1,4 +1,5 @@
 extends State
+class_name PlayerStateFree
 
 @onready var momentum_layer: PlayerMomentumVelocity = %Momentum
 
@@ -7,3 +8,4 @@ func _ready() -> void:
 
 func enter(from: State) -> void:
 	momentum_layer.enabled = true
+	

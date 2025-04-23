@@ -5,7 +5,7 @@ signal state_changed(to: State, from: State)
 
 @export var INITIAL_STATE: State
 
-@onready var _state: State = (func(): 
+@onready var _state: State = (func() -> State: 
 	_state_changed(INITIAL_STATE, null)
 	return INITIAL_STATE
 ).call()

@@ -17,7 +17,7 @@ func get_input_raw() -> Vector2:
 	var input_vec := Vector2.ZERO
 
 	if joypads.size() > 0:
-		var id = joypads[0]
+		var id := joypads[0]
 		if Input.is_joy_known(id):
 			input_vec = Vector2(
 				Input.get_joy_axis(id, JOY_AXIS_LEFT_X),
@@ -50,7 +50,7 @@ func get_aim() -> Vector2:
 	var input_vec := Vector2.ZERO
 
 	if joypads.size() > 0 && !is_kbm:
-		var id = joypads[0]
+		var id := joypads[0]
 		if Input.is_joy_known(id):
 			var raw_input := Vector2(
 				Input.get_joy_axis(id, JOY_AXIS_RIGHT_X),
