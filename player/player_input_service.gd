@@ -5,11 +5,11 @@ var is_kbm: bool = true
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouse:
 		if !is_kbm:
-			print_debug("[%s]: Player switched to keyboard and mouse" % name)
+			print("[%s]: Player switched to keyboard and mouse" % name)
 		is_kbm = true
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		if is_kbm:
-			print_debug("[%s]: Player switched to gamepad" % name)
+			print("[%s]: Player switched to gamepad" % name)
 		is_kbm = false
 
 func get_input_raw() -> Vector2:
