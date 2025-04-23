@@ -3,7 +3,7 @@ class_name Velocity
 
 signal on_store(velocity: Vector2)
 signal on_unstore(velocity: Vector2)
-signal on_collision(velocity: Vector2, collision: KinematicCollision2D)
+signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 
 ## Enables processing
 @export var enabled : bool = true
@@ -27,26 +27,47 @@ var storing : bool = false :
 
 var _velocity : Vector2 = Vector2.ZERO
 var _stored_velocity : Vector2 = Vector2.ZERO
+## Internally managed- describes if body is currently on a diagonal surface,
+## when true: _diag_surface_mod modifies the returned _velocity in get_velocity
+## to account for the diagonal surface sliding
+## when set to false: _velocity is set to _velocity * _diag_surface_mod
+var _on_diag_surface : bool = false :
+	set(value):
+		_on_diag_surface = value
+		if !_on_diag_surface:
+			_velocity *= _diag_surface_mod
+var _diag_surface_mod : Vector2 = Vector2.ZERO
 
 #region process
 func _init() -> void:
-	on_collision.connect(_on_collision)
+	on_move_and_slide.connect(_on_move_and_slide)
 
 func _physics_process(delta: float) -> void:
 	if enabled && !storing:
+		if _on_diag_surface:
+			pass
 		_velocity_physics_process(delta)
 
 func _velocity_physics_process(delta: float) -> void:
 	pass
 
-func _on_collision(velocity: Vector2, collision: KinematicCollision2D) -> void:
-	var normal := collision.get_normal().rotated(PI / 2).abs()
-	if normal.x == 1:
-		print("y")
-		_velocity.y = 0
-	elif normal.y == 1:
-		print("x")
-		_velocity.x = 0
+func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> void:
+	if collision:
+		var normal := collision.get_normal().rotated(PI / 2).abs()
+		if normal.x == 1:
+			_velocity.y = 0
+			if _on_diag_surface:
+				_on_diag_surface = false
+		elif normal.y == 1:
+			_velocity.x = 0
+			if _on_diag_surface:
+				_on_diag_surface = false
+		else:
+			_on_diag_surface = true
+			_diag_surface_mod = normal
+	else:
+		if _on_diag_surface:
+			_on_diag_surface = false
 #endregion
 
 #region helpers
