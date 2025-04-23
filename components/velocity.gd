@@ -3,12 +3,13 @@ class_name Velocity
 
 signal on_store(velocity: Vector2)
 signal on_unstore(velocity: Vector2)
-signal on_collision(velocity: Vector2, collision: KinematicCollision2D, angle: float)
+signal on_collision(velocity: Vector2, collision: KinematicCollision2D)
 
 ## Enables processing
 @export var enabled : bool = true
 
 @export_group("Collision")
+@export var STOP_ON_DIRECT_COLLISION : bool = true
 @export_range(0.0, 180, 0.001, "degrees") var DIRECT_ANGLE_MARGIN : float = 45
 
 ## Stops processing and stores _velocity in _stored_velocity
@@ -38,13 +39,25 @@ func _physics_process(delta: float) -> void:
 func _velocity_physics_process(delta: float) -> void:
 	pass
 
-func _on_collision(velocity: Vector2, collision: KinematicCollision2D, angle: float) -> void:
-	print(angle)
+func _on_collision(velocity: Vector2, collision: KinematicCollision2D) -> void:
+	var normal := collision.get_normal().rotated(PI / 2).abs()
+	if normal.x == 1:
+		print("y")
+		_velocity.y = 0
+	elif normal.y == 1:
+		print("x")
+		_velocity.x = 0
 #endregion
 
 #region helpers
-func is_direct_collision(angle, error_margin: float) -> bool:
-	return angle > 180 - error_margin
+func is_direct_collision(velocity: Vector2, collision: KinematicCollision2D, margin: float) -> bool:
+	var col_angle := collision.get_normal().angle()
+	var vel_angle := velocity.normalized().angle()
+	var dif_angle := rad_to_deg(angle_difference(vel_angle, col_angle))
+
+	## We round so 134.999 and 135.001 are 135
+	var abs_angle := roundi(absf(dif_angle))
+	return abs_angle > 180 - margin
 ## returns _velocity if nothing else affects it
 func get_velocity() -> Vector2:
 	return _velocity

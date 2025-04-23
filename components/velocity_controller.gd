@@ -12,12 +12,15 @@ func _ready() -> void:
 			on_collision.connect(_on_collision)
 
 func _on_collision(velocity: Vector2, collision: KinematicCollision2D) -> void:
-	var angle := absf(rad_to_deg(angle_difference(
-		 collision.get_normal().angle(), 
-		velocity.normalized().angle()
-	)))
+	var col_angle := collision.get_normal().angle()
+	var vel_angle := velocity.normalized().angle()
+	var dif_angle := rad_to_deg(angle_difference(vel_angle, col_angle))
+
+	## We round so 134.999 and 135.001 are 135
+	var abs_angle := roundi(absf(dif_angle))
+
 	for layer in _layers:
-		layer.on_collision.emit(velocity, collision, angle)
+		layer.on_collision.emit(velocity, collision)
 
 func get_velocity() -> Vector2:
 	var velocity := Vector2.ZERO
