@@ -1,5 +1,5 @@
-extends VelocityLayer
-class_name PlayerMomentumVelocityLayer
+extends Velocity
+class_name PlayerMomentumVelocity
 
 @export var WALK_SPEED := 4000.0
 @export var RUN_SPEED := 12000.0

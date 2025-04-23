@@ -1,11 +1,11 @@
 extends Node
-class_name VelocityLayerController
+class_name VelocityController
 
-var _layers : Array[VelocityLayer]
+var _layers : Array[Velocity]
 
 func _ready() -> void:
 	for child in get_children():
-		if child is VelocityLayer:
+		if child is Velocity:
 			_layers.push_back(child)
 
 func get_velocity() -> Vector2:

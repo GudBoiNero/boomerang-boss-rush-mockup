@@ -6,8 +6,8 @@ class_name PlayerController
 @export var br_charge_time := 0.9
 @export var br_max_distance := 300.0
 
-@onready var velocity_controller: VelocityLayerController = %VelocityLayerController
-@onready var momentum_velocity_layer: PlayerMomentumVelocityLayer = %MomentumVelocityLayer
+@onready var velocity_controller: VelocityController = %VelocityController
+@onready var momentum_velocity_layer: PlayerMomentumVelocity = %Momentum
 
 
 func _physics_process(delta: float) -> void:

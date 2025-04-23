@@ -1,6 +1,6 @@
 extends State
 
-@onready var momentum_layer: PlayerMomentumVelocityLayer = %MomentumVelocityLayer
+@onready var momentum_layer: PlayerMomentumVelocity = %Momentum
 
 func _ready() -> void:
 	state_entered.connect(enter)

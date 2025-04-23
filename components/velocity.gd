@@ -1,5 +1,5 @@
 extends Node
-class_name VelocityLayer
+class_name Velocity
 
 signal on_store(velocity: Vector2)
 signal on_unstore(velocity: Vector2)
