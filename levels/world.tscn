@@ -35,7 +35,6 @@ sources/1 = SubResource("TileSetAtlasSource_w32yo")
 
 [node name="Player" parent="." instance=ExtResource("1_2mgkc")]
 position = Vector2(555, 281)
-floor_stop_on_slope = false
 
 [node name="Grid" type="TileMapLayer" parent="."]
 z_index = -1

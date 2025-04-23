@@ -38,7 +38,8 @@ func get_input_raw() -> Vector2:
 
 
 func get_input() -> Vector2:
-	return get_input_raw().normalized()
+	var raw := get_input_raw()
+	return raw.limit_length(1.0) if raw.length() > 0.01 else Vector2.ZERO
 
 
 func get_aim() -> Vector2:
