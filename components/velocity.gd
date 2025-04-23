@@ -9,7 +9,7 @@ signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 @export var enabled : bool = true
 
 @export_group("Collision")
-@export var STOP_ON_DIRECT_COLLISION : bool = true
+@export var STOP_ON_DIRECT_COLLISION : bool = false
 @export_range(0.0, 180, 0.001, "degrees") var DIRECT_ANGLE_MARGIN : float = 45
 
 ## Stops processing and stores _velocity in _stored_velocity
@@ -40,10 +40,13 @@ func _velocity_physics_process(delta: float) -> void:
 	pass
 
 func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> void:
-	print(_velocity)
 	if collision:
+		var remainder := collision.get_remainder()
 		var normal := collision.get_normal()
+
 		var slide_vector := velocity.slide(normal)
+		var angle_diff := rad_to_deg(angle_difference(velocity.angle(), slide_vector.angle()))
+
 		_velocity = slide_vector
 
 #endregion

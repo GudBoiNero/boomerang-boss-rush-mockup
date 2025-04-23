@@ -46,7 +46,6 @@ script = ExtResource("5_rgyib")
 [node name="Momentum" type="Node" parent="VelocityController"]
 unique_name_in_owner = true
 script = ExtResource("3_g1dw6")
-DIRECT_ANGLE_MARGIN = 15.0
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
