@@ -46,6 +46,11 @@ script = ExtResource("5_rgyib")
 [node name="Momentum" type="Node" parent="VelocityController"]
 unique_name_in_owner = true
 script = ExtResource("3_g1dw6")
+WALK_SPEED = null
+RUN_SPEED = null
+SPRINT_SPEED = null
+enabled = null
+STOP_ON_DIRECT_COLLISION = null
 DIRECT_ANGLE_MARGIN = 15.0
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
 

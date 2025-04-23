@@ -17,4 +17,3 @@ func _physics_process(delta: float) -> void:
 		velocity_controller.on_move_and_slide.emit(target, get_slide_collision(0))
 	else:
 		velocity_controller.on_move_and_slide.emit(target, null)
-	print(velocity - target)
