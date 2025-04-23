@@ -8,7 +8,7 @@ signal on_unstore(velocity: Vector2)
 @export var enabled : bool = true
 
 @export_group("Collision")
-@export_range(0.0, 360, 0.001) var ANGLE_ERROR_MARGIN : float = 1.0
+@export_range(0.0, 180, 0.001) var ANGLE_ERROR_MARGIN : float = 45
 
 ## Stops processing and stores _velocity in _stored_velocity
 var storing : bool = false :
@@ -35,11 +35,12 @@ func _velocity_physics_process(delta: float) -> void:
 	pass
 
 func _on_collision(velocity: Vector2, collision: KinematicCollision2D) -> void:
-	var col_angle := rad_to_deg(collision.get_normal().angle())
-	var vel_angle := rad_to_deg(velocity.normalized().angle_to(collision.get_normal()))
-	var sum_angle := rad_to_deg((velocity.normalized() + collision.get_normal()).angle())
-	print(sum_angle)
-	%Cursor.rotation_degrees = sum_angle
+	var col_angle := collision.get_normal().angle()
+	var vel_angle := velocity.normalized().angle()
+	var sum_angle := (angle_difference(vel_angle, col_angle))
+	# col_angle works as expected
+	print(roundi(rad_to_deg(sum_angle)))
+	%Cursor.rotation = sum_angle
 #endregion
 
 #region helpers
