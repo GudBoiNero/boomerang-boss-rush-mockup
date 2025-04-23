@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bg7lby2s4ti1h"]
+[gd_scene load_steps=12 format=3 uid="uid://bg7lby2s4ti1h"]
 
 [ext_resource type="Script" uid="uid://d2i77m8wlvcj2" path="res://player/player_controller.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://bc30t2vpo6q4q" path="res://player/player_state_machine.gd" id="2_g6k8r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://byx8pa4toxg6x" path="res://player/player_momentum_velocity_layer.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://jfdxad63xurn" path="res://player/cursor.gd" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dov6qdyj12hnt" path="res://player/arrow.png" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://d3a8e6t65vp16" path="res://components/velocity_layer_controller.gd" id="5_rgyib"]
 
 [sub_resource type="Curve" id="Curve_qjkh3"]
 _data = [Vector2(0, 0), 0.0, 1.63514, 0, 0, Vector2(0.639053, 0.94382), 1.35634, 1.35634, 0, 0, Vector2(1, 0.786517), -1.08507, 0.0, 0, 0]
@@ -31,6 +32,15 @@ metadata/_custom_type_script = "uid://cvui8oej1t1qi"
 script = ExtResource("3_boad6")
 metadata/_custom_type_script = "uid://ch4wjd67fwfr5"
 
+[node name="VelocityLayerController" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_rgyib")
+
+[node name="MomentumVelocityLayer" type="Node" parent="VelocityLayerController"]
+unique_name_in_owner = true
+script = ExtResource("3_g1dw6")
+metadata/_custom_type_script = "uid://brdqq4wkc4kok"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_qhqgy")
@@ -40,12 +50,8 @@ texture = ExtResource("2_rkbax")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MomentumVelocityLayer" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_g1dw6")
-metadata/_custom_type_script = "uid://brdqq4wkc4kok"
-
 [node name="Cursor" type="Node2D" parent="."]
+position = Vector2(0, 7)
 rotation = 1.57174
 script = ExtResource("4_qjkh3")
 

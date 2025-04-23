@@ -4,6 +4,6 @@ extends Node2D
 
 func _physics_process(delta: float) -> void:
 	var aim := PlayerInputService.get_aim()
-	position = aim * 100
+	position = aim * 10
 	look_at(aim + player.global_position)
 	visible = aim != Vector2.ZERO

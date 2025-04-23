@@ -6,16 +6,19 @@ signal state_changed(to: State, from: State)
 @export var INITIAL_STATE: State
 
 @onready var state: State = (func(): 
-	INITIAL_STATE.state_entered.emit(null)
+	_state_changed(INITIAL_STATE, null)
 	return INITIAL_STATE
 ).call():
 	set(new):
-		print("huyh")
 		var old := state
 		state = new
-		state_changed.emit(new, old)
-		old.state_exited.emit(new)
-		new.state_entered.emit(old)
+		_state_changed(new, old)
+
+func _state_changed(to: State, from: State) -> void:
+	state_changed.emit(to, from)
+	to.state_entered.emit(from)
+	if from:
+		from.state_exited.emit(to)
 
 func _process(delta: float) -> void:
 	if state:

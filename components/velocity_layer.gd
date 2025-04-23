@@ -4,10 +4,10 @@ class_name VelocityLayer
 signal on_store(velocity: Vector2)
 signal on_unstore(velocity: Vector2)
 
+## Enables processing
 @export var enabled : bool = true
 
-var _velocity : Vector2 = Vector2.ZERO
-var _stored_velocity : Vector2 = Vector2.ZERO
+## Stops processing and stores _velocity in _stored_velocity
 var storing : bool = false :
 	set(value):
 		storing = value
@@ -19,6 +19,9 @@ var storing : bool = false :
 			_velocity = _stored_velocity
 			_stored_velocity = Vector2.ZERO
 			on_unstore.emit(_velocity)
+
+var _velocity : Vector2 = Vector2.ZERO
+var _stored_velocity : Vector2 = Vector2.ZERO
 
 #region process
 func _physics_process(delta: float) -> void:
