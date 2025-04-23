@@ -26,6 +26,28 @@ floor_block_on_wall = false
 script = ExtResource("1_qhqgy")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rkbax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2(0, 7)
+rotation = 1.57174
+script = ExtResource("4_qjkh3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
+position = Vector2(2.86102e-06, 0)
+rotation = 3.92699
+texture = ExtResource("4_yw30f")
+offset = Vector2(8, -8)
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("INITIAL_STATE")]
 script = ExtResource("2_hg6s5")
 INITIAL_STATE = NodePath("Free")
@@ -49,25 +71,3 @@ script = ExtResource("3_g1dw6")
 WALK_SPEED = 4000.0
 RUN_SPEED = 8000.0
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_qhqgy")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rkbax")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_smoothed = true
-position_smoothing_enabled = true
-
-[node name="Cursor" type="Node2D" parent="."]
-position = Vector2(0, 7)
-rotation = 1.57174
-script = ExtResource("4_qjkh3")
-
-[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
-position = Vector2(2.86102e-06, 0)
-rotation = 3.92699
-texture = ExtResource("4_yw30f")
-offset = Vector2(8, -8)

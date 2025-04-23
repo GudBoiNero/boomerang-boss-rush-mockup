@@ -6,8 +6,8 @@ class_name PlayerMomentumVelocity
 @export var SPRINT_SPEED := 16_000.0
 
 @export var WALK_TO_RUN_TRANSITION := 0.9
-@export_range(0, 1, 0.01) var ACCEL_TIME := 0.1  # Acceleration smoothing
-@export_range(0, 1, 0.01) var DECEL_TIME := 0.2  # Deceleration smoothing (friction)
+@export_range(0, 1, 0.01) var ACCEL_TIME := 0.05  # Acceleration smoothing
+@export_range(0, 1, 0.01) var DECEL_TIME := 0.1  # Deceleration smoothing (friction)
 
 var _speed := WALK_SPEED
 var _target_speed := 0.0
