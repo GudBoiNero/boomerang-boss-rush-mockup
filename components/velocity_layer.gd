@@ -8,9 +8,9 @@ signal on_unstore(velocity: Vector2)
 
 var _velocity : Vector2 = Vector2.ZERO
 var _stored_velocity : Vector2 = Vector2.ZERO
-var _storing : bool = false :
+var storing : bool = false :
 	set(value):
-		_storing = value
+		storing = value
 		if value:
 			_stored_velocity = _velocity
 			_velocity = Vector2.ZERO
@@ -22,7 +22,7 @@ var _storing : bool = false :
 
 #region process
 func _physics_process(delta: float) -> void:
-	if enabled && !_storing:
+	if enabled && !storing:
 		_velocity_physics_process(delta)
 
 func _velocity_physics_process(delta: float) -> void:
@@ -31,21 +31,13 @@ func _velocity_physics_process(delta: float) -> void:
 
 #region helpers
 ## returns _velocity if nothing else affects it
-func get_output_velocity() -> Vector2:
-	return (_velocity if !_storing else _stored_velocity) if enabled else Vector2.ZERO
-
 func get_velocity() -> Vector2:
 	return _velocity
 
 func get_stored_velocity() -> Vector2:
 	return _stored_velocity
 
-func is_storing() -> bool:
-	return _storing
-
-func store() -> void:
-	_storing = true
-
-func unstore() -> void:
-	_storing = false
+func clear() -> void:
+	_velocity = Vector2.ZERO
+	_stored_velocity = Vector2.ZERO
 #endregion

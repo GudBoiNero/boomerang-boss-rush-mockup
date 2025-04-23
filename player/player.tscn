@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg7lby2s4ti1h"]
+[gd_scene load_steps=11 format=3 uid="uid://bg7lby2s4ti1h"]
 
 [ext_resource type="Script" uid="uid://d2i77m8wlvcj2" path="res://player/player_controller.gd" id="1_qhqgy"]
+[ext_resource type="Script" uid="uid://bc30t2vpo6q4q" path="res://player/player_state_machine.gd" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://phcjelw7diah" path="res://player/player.png" id="2_rkbax"]
-[ext_resource type="Script" uid="uid://byx8pa4toxg6x" path="res://player/momentum_velocity_layer.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://0v2n6qgy202y" path="res://player/player_state_free.gd" id="3_boad6"]
+[ext_resource type="Script" uid="uid://byx8pa4toxg6x" path="res://player/player_momentum_velocity_layer.gd" id="3_g1dw6"]
 [ext_resource type="Script" uid="uid://jfdxad63xurn" path="res://player/cursor.gd" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dov6qdyj12hnt" path="res://player/arrow.png" id="4_yw30f"]
 
@@ -16,10 +18,18 @@ curve = SubResource("Curve_qjkh3")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(10, 8)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("momentum_velocity_layer")]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qhqgy")
-momentum_velocity_layer = NodePath("MomentumVelocityLayer")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("INITIAL_STATE")]
+script = ExtResource("2_g6k8r")
+INITIAL_STATE = NodePath("Free")
+metadata/_custom_type_script = "uid://cvui8oej1t1qi"
+
+[node name="Free" type="Node" parent="StateMachine"]
+script = ExtResource("3_boad6")
+metadata/_custom_type_script = "uid://ch4wjd67fwfr5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -31,6 +41,7 @@ texture = ExtResource("2_rkbax")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MomentumVelocityLayer" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("3_g1dw6")
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
 
