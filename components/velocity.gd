@@ -7,6 +7,9 @@ signal on_unstore(velocity: Vector2)
 ## Enables processing
 @export var enabled : bool = true
 
+@export_group("Collision")
+@export_range(0.0, 360, 0.001) var ANGLE_ERROR_MARGIN : float = 1.0
+
 ## Stops processing and stores _velocity in _stored_velocity
 var storing : bool = false :
 	set(value):
@@ -30,6 +33,10 @@ func _physics_process(delta: float) -> void:
 
 func _velocity_physics_process(delta: float) -> void:
 	pass
+
+func _on_collision(collision: KinematicCollision2D) -> void:
+	var angle = rad_to_deg(collision.get_normal().angle())
+	print("Collision at angle: ", angle)
 #endregion
 
 #region helpers

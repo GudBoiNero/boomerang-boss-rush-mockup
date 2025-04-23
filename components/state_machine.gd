@@ -5,14 +5,13 @@ signal state_changed(to: State, from: State)
 
 @export var INITIAL_STATE: State
 
-@onready var state: State = (func(): 
+@onready var _state: State = (func(): 
 	_state_changed(INITIAL_STATE, null)
 	return INITIAL_STATE
-).call():
-	set(new):
-		var old := state
-		state = new
-		_state_changed(new, old)
+).call()
+
+func set_state(new: State) -> void:
+	_state_changed(new, _state)
 
 func _state_changed(to: State, from: State) -> void:
 	state_changed.emit(to, from)
@@ -21,9 +20,9 @@ func _state_changed(to: State, from: State) -> void:
 		from.state_exited.emit(to)
 
 func _process(delta: float) -> void:
-	if state:
-		state._state_process(delta)
+	if _state:
+		_state._state_process(delta)
 
 func _physics_process(delta: float) -> void:
-	if state:
-		state._state_physics_process(delta)
+	if _state:
+		_state._state_physics_process(delta)
