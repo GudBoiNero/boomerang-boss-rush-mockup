@@ -12,6 +12,11 @@ func _input(event: InputEvent) -> void:
 			print("[%s]: Player switched to gamepad" % name)
 		is_kbm = false
 
+
+func is_holding_throw() -> bool:
+	return Input.is_action_pressed("throw_left") or Input.is_action_pressed("throw_right")
+
+
 func get_move_input_raw() -> Vector2:
 	var joypads := Input.get_connected_joypads()
 	var input_vec := Vector2.ZERO
@@ -42,7 +47,7 @@ func get_move_input() -> Vector2:
 	return raw.limit_length(1.0) if raw.length() > 0.01 else Vector2.ZERO
 
 
-func get_ai0m_input() -> Vector2:
+func get_aim_input() -> Vector2:
 	var rect := get_viewport().get_visible_rect().size
 	var center := rect / 2
 
