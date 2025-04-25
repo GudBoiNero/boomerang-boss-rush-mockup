@@ -32,9 +32,16 @@ var _stored_velocity : Vector2 = Vector2.ZERO
 func _init() -> void:
 	on_move_and_slide.connect(_on_move_and_slide)
 
+func _process(delta: float) -> void:
+	if enabled && !storing:
+		_velocity_process(delta)
+
 func _physics_process(delta: float) -> void:
 	if enabled && !storing:
 		_velocity_physics_process(delta)
+
+func _velocity_process(delta: float) -> void:
+	pass
 
 func _velocity_physics_process(delta: float) -> void:
 	pass
