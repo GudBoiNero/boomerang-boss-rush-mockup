@@ -12,8 +12,7 @@ class_name PlayerController
 
 #region process
 func _death(hitbox: HitBox) -> void:
-	print("huh")
-	get_tree().reload_current_scene()
+	get_tree().reload_current_scene.call_deferred()
 
 
 func _physics_process(delta: float) -> void:

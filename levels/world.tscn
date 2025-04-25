@@ -41,8 +41,6 @@ sources/1 = SubResource("TileSetAtlasSource_w32yo")
 position = Vector2(296, 296)
 script = ExtResource("4_w32yo")
 always_active = true
-does_kb = null
-kb_direction = null
 metadata/_custom_type_script = "uid://bjnol0fqcv05f"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
