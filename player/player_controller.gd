@@ -12,6 +12,7 @@ class_name PlayerController
 
 #region process
 func _death(hitbox: HitBox) -> void:
+	print("huh")
 	get_tree().reload_current_scene()
 
 

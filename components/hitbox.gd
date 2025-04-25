@@ -6,8 +6,8 @@ class_name HitBox
 signal hurtbox_entered(hurtbox: HurtBox)
 signal hurtbox_exited(hurtbox: HurtBox)
 
+## A list of HurtBoxes you want to ignore. Realistically only ever one would be used
 @export var ignore_list : Array[HurtBox]
-
 @export var damage : int = 1
 @export_group("Lifetime")
 @export var always_active : bool = false
