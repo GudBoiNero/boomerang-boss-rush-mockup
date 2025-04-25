@@ -6,14 +6,20 @@ class_name PlayerController
 @export var br_charge_time := 0.9
 @export var br_max_distance := 300.0
 
+@onready var state_machine: StateMachine = %StateMachine
 @onready var velocity_controller: VelocityController = %VelocityController
-@onready var momentum_velocity_layer: PlayerMomentumVelocity = %Momentum
+@onready var momentum_velocity: PlayerMomentumVelocity = %Momentum
 
+@onready var s_free : PlayerStateFree = %Free
+@onready var s_hit : State = %Hit
 
 #region process
 func _death(hitbox: HitBox) -> void:
 	get_tree().reload_current_scene.call_deferred()
 
+
+func _hit(hitbox: HitBox) -> void:
+	state_machine.set_state(s_hit)
 
 func _physics_process(delta: float) -> void:
 	var target := velocity_controller.get_velocity()
