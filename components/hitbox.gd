@@ -21,7 +21,8 @@ signal hurtbox_exited(hurtbox: HurtBox)
 ## TODO: Implement
 @export var kb_type : KnockbackTypes = KnockbackTypes.OUTWARDS
 ## Overrides get_kb_direction if non zero value
-@export var kb_direction : Vector2 = Vector2.ZERO
+@export var kb_direction : Vector2 = Vector2.ZERO:
+	get(): return kb_direction if kb_direction != Vector2.ZERO else get_kb_direction()
 @export_group("Special Effects")
 ## TODO: Implement
 @export var hit_effect: PackedScene

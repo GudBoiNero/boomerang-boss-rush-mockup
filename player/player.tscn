@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bg7lby2s4ti1h"]
+[gd_scene load_steps=19 format=3 uid="uid://bg7lby2s4ti1h"]
 
 [ext_resource type="Script" uid="uid://d2i77m8wlvcj2" path="res://player/player_controller.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://cvui8oej1t1qi" path="res://components/state_machine.gd" id="2_hg6s5"]
@@ -8,11 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://bwnigy3oubx0i" path="res://textures/projectile/boomerang.png" id="3_8t03j"]
 [ext_resource type="Script" uid="uid://0v2n6qgy202y" path="res://player/states/player_state_free.gd" id="3_boad6"]
 [ext_resource type="Script" uid="uid://byx8pa4toxg6x" path="res://player/player_momentum_velocity.gd" id="3_g1dw6"]
-[ext_resource type="Script" uid="uid://ch4wjd67fwfr5" path="res://components/state.gd" id="4_8t03j"]
 [ext_resource type="Script" uid="uid://jfdxad63xurn" path="res://player/cursor.gd" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dov6qdyj12hnt" path="res://textures/arrow.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://d3a8e6t65vp16" path="res://components/velocity_controller.gd" id="5_rgyib"]
+[ext_resource type="Script" uid="uid://byokxr0wnu6v0" path="res://player/states/hit.gd" id="11_kb6p2"]
 [ext_resource type="Script" uid="uid://cdc4av2l4aynn" path="res://components/hurtbox.gd" id="12_ebec5"]
+[ext_resource type="Script" uid="uid://pwyr8bf10odi" path="res://components/knockback_velocity.gd" id="14_kb6p2"]
 
 [sub_resource type="Curve" id="Curve_qjkh3"]
 _data = [Vector2(0, 0), 0.0, 1.63514, 0, 0, Vector2(0.639053, 0.94382), 1.35634, 1.35634, 0, 0, Vector2(1, 0.786517), -1.08507, 0.0, 0, 0]
@@ -34,10 +35,12 @@ script = ExtResource("1_qhqgy")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
 
 [node name="HealthComponent" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("2_yllr7")
 metadata/_custom_type_script = "uid://d04y5tq6ca2cd"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+unique_name_in_owner = true
 modulate = Color(1, 0.647059, 0, 1)
 script = ExtResource("12_ebec5")
 health_component = NodePath("../HealthComponent")
@@ -95,7 +98,7 @@ metadata/_custom_type_script = "uid://ch4wjd67fwfr5"
 
 [node name="Hit" type="Node" parent="StateMachine"]
 unique_name_in_owner = true
-script = ExtResource("4_8t03j")
+script = ExtResource("11_kb6p2")
 metadata/_custom_type_script = "uid://ch4wjd67fwfr5"
 
 [node name="VelocityController" type="Node" parent="."]
@@ -109,4 +112,7 @@ WALK_SPEED = 4000.0
 RUN_SPEED = 8000.0
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
 
-[connection signal="health_depleted" from="HealthComponent" to="." method="_death"]
+[node name="Knockback" type="Node" parent="VelocityController"]
+unique_name_in_owner = true
+script = ExtResource("14_kb6p2")
+metadata/_custom_type_script = "uid://brdqq4wkc4kok"

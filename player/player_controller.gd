@@ -6,12 +6,21 @@ class_name PlayerController
 @export var br_charge_time := 0.9
 @export var br_max_distance := 300.0
 
+@onready var health_component : HealthComponent = %HealthComponent
+@onready var hurtbox : HurtBox = %HurtBox
+
 @onready var state_machine: StateMachine = %StateMachine
 @onready var s_free : PlayerStateFree = %Free
 @onready var s_hit : State = %Hit
 
 @onready var velocity_controller: VelocityController = %VelocityController
 @onready var v_momentum: PlayerMomentumVelocity = %Momentum
+@onready var v_knockback: KnockbackVelocity = %Knockback
+
+func _ready() -> void:
+	health_component.health_depleted.connect(_death)
+	hurtbox.hitbox_entered.connect(_hit)
+
 
 #region process
 func _death(hitbox: HitBox) -> void:
@@ -20,6 +29,7 @@ func _death(hitbox: HitBox) -> void:
 
 func _hit(hitbox: HitBox) -> void:
 	state_machine.set_state(s_hit)
+
 
 func _physics_process(delta: float) -> void:
 	var target := velocity_controller.get_velocity()

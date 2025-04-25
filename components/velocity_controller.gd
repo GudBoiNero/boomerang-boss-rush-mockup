@@ -7,10 +7,10 @@ signal on_move_and_slide(velocity: Vector2, last_slide: KinematicCollision2D)
 var _layers : Array[Velocity]
 
 func _ready() -> void:
+	on_move_and_slide.connect(_on_move_and_slide)
 	for child in get_children():
 		if child is Velocity:
 			_layers.push_back(child)
-			on_move_and_slide.connect(_on_move_and_slide)
 
 func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> void:
 	if collision:
