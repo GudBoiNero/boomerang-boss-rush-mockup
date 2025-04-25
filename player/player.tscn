@@ -20,27 +20,17 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_g6k8r"]
 curve = SubResource("Curve_qjkh3")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yllr7"]
-size = Vector2(10, 8)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(10, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yllr7"]
+size = Vector2(14, 10)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_qhqgy")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
-
-[node name="HurtBox" type="Area2D" parent="."]
-modulate = Color(1, 0.647059, 0, 1)
-script = ExtResource("12_ebec5")
-metadata/_custom_type_script = "uid://cdc4av2l4aynn"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_yllr7")
-debug_color = Color(0.745098, 0.745098, 0.745098, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_rkbax")
@@ -52,6 +42,16 @@ shape = SubResource("RectangleShape2D_qhqgy")
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+modulate = Color(1, 0.647059, 0, 1)
+script = ExtResource("12_ebec5")
+metadata/_custom_type_script = "uid://cdc4av2l4aynn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_yllr7")
+debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="BoomerangController" type="Node2D" parent="." node_paths=PackedStringArray("sprite", "anchor")]
 script = ExtResource("3_2ieo8")

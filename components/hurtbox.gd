@@ -9,4 +9,5 @@ signal hitbox_exited(hitbox: HitBox)
 func _draw() -> void:
 	for child in get_children():
 		if child is CollisionShape2D or child is CollisionPolygon2D:
-			child.debug_color = Color.GRAY
+			child.debug_color = Color.GREEN
+			child.debug_color.a8 = 107
