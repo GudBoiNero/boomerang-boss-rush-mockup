@@ -10,6 +10,10 @@ class_name PlayerController
 @onready var momentum_velocity_layer: PlayerMomentumVelocity = %Momentum
 
 
+func _death(hitbox: HitBox) -> void:
+	get_tree().reload_current_scene()
+
+
 func _physics_process(delta: float) -> void:
 	var target := velocity_controller.get_velocity()
 	velocity = target

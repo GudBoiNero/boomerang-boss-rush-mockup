@@ -3,8 +3,17 @@
 extends Area2D
 class_name HurtBox
 
+@export var health_component: HealthComponent
+
 signal hitbox_entered(hitbox: HitBox)
 signal hitbox_exited(hitbox: HitBox)
+
+func _ready() -> void:
+	hitbox_entered.connect(_hit)
+
+func _hit(hitbox: HitBox) -> void:
+	if health_component:
+		health_component.damage(hitbox)
 
 func _draw() -> void:
 	for child in get_children():
