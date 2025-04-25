@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func _state_entered(from: State) -> void:
 	pass
-	
+
 func _state_exited(to: State) -> void:
 	pass
 
