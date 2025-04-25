@@ -8,6 +8,7 @@ class_name HurtBox
 signal hitbox_entered(hitbox: HitBox)
 signal hitbox_exited(hitbox: HitBox)
 
+#region process
 func _ready() -> void:
 	hitbox_entered.connect(_hit)
 
@@ -20,3 +21,4 @@ func _draw() -> void:
 		if child is CollisionShape2D or child is CollisionPolygon2D:
 			child.debug_color = Color.GREEN
 			child.debug_color.a8 = 107
+#endregion

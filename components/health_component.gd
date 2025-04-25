@@ -8,4 +8,7 @@ signal health_damaged(hitbox: HitBox)
 @export var _health : int = 3
 
 func damage(hitbox: HitBox) -> void:
-	pass
+	_health = max(0, hitbox.damage)
+	health_damaged.emit(hitbox)
+	if _health == 0:
+		health_depleted.emit(hitbox)

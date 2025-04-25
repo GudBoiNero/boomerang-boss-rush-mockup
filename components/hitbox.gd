@@ -11,15 +11,20 @@ signal hurtbox_exited(hurtbox: HurtBox)
 @export var damage : int = 1
 @export_group("Lifetime")
 @export var always_active : bool = false
+## TODO: Implement
 @export var duration : float = 0.1
 @export_group("Knockback")
 @export var does_kb : bool = false
 @export var kb_duration : float = 0.2
 ## force of knockback
 @export var kb_force : float = 1000.0
+## TODO: Implement
 @export var kb_type : KnockbackTypes = KnockbackTypes.OUTWARDS
 ## Overrides get_kb_direction if non zero value
 @export var kb_direction : Vector2 = Vector2.ZERO
+@export_group("Special Effects")
+## TODO: Implement
+@export var hit_effect: PackedScene
 
 enum KnockbackTypes {
 	## DIRECTIONAL: kb_direction or if null- get_kb_direction()
@@ -36,12 +41,13 @@ var _active : bool = false :
 		if !_active:
 			_registered.clear()
 
+#region process
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
 
 func _on_area_entered(area: Area2D) -> void:
-	if !_active: return
+	if !_active and !always_active: return
 
 	if area is HurtBox:
 		if area in ignore_list: return
@@ -56,12 +62,17 @@ func _on_area_exited(area: Area2D) -> void:
 		_registered.remove_at(_registered.find(area))
 		area.hitbox_exited.emit(self)
 		hurtbox_exited.emit(area)
+#endregion
 
+#region helpers
 func get_kb_direction() -> Vector2:
 	return Vector2.ZERO
+#endregion
 
+#region tool
 func _draw() -> void:
 	for child in get_children():
 		if child is CollisionShape2D:
 			child.debug_color = Color.RED 
 			child.debug_color.a8 = 107
+#endregion
