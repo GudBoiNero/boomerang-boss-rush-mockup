@@ -48,14 +48,14 @@ func _on_area_entered(area: Area2D) -> void:
 		if area in ignore_list: return
 		if area in _registered: return 
 		_registered.push_back(area)
-		area.hitbox_entered.emit(self)
+		area.hitbox_entered.emit(context)
 		hurtbox_entered.emit(area)
 
 func _on_area_exited(area: Area2D) -> void:
 	if area is HurtBox:
 		if area not in _registered: return
 		_registered.remove_at(_registered.find(area))
-		area.hitbox_exited.emit(self)
+		area.hitbox_exited.emit(context)
 		hurtbox_exited.emit(area)
 #endregion
 

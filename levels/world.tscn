@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_vons5"]
 script = ExtResource("2_i8ckm")
 damage = 1
-does_kb = false
+does_kb = true
 kb_duration = 0.2
 kb_force = 1000.0
 kb_type = 1
@@ -71,4 +71,5 @@ tile_set = SubResource("TileSet_w32yo")
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_712nc")
+_health = null
 metadata/_custom_type_script = "uid://d04y5tq6ca2cd"

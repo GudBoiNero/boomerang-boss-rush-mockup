@@ -33,10 +33,13 @@ floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_qhqgy")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
+br_charge_time = null
+br_max_distance = null
 
 [node name="HealthComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_yllr7")
+_health = null
 metadata/_custom_type_script = "uid://d04y5tq6ca2cd"
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]

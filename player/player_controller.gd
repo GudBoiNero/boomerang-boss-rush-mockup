@@ -23,11 +23,11 @@ func _ready() -> void:
 
 
 #region process
-func _death(hitbox: HitBox) -> void:
+func _death(context: HitBoxContext) -> void:
 	get_tree().reload_current_scene.call_deferred()
 
 
-func _hit(hitbox: HitBox) -> void:
+func _hit(context: HitBoxContext) -> void:
 	state_machine.set_state(s_hit)
 
 

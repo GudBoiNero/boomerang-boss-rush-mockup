@@ -13,9 +13,20 @@ class_name HitBoxContext
 ## Overrides get_kb_direction if non zero value
 @export var kb_direction : Vector2 = Vector2.ZERO
 
+var source : HitBox
+var hurtbox : HurtBox
+var position : Vector2
+
 enum KnockbackTypes {
 	## DIRECTIONAL: kb_direction
 	DIRECTIONAL,
 	## OUTWARDS: from center of hitbox towards hurtbox hit
 	OUTWARDS
 }
+
+func get_kb() -> Vector2:
+	if kb_type == KnockbackTypes.DIRECTIONAL:
+		return kb_direction * kb_force
+	else:
+		var dir := position.direction_to(hurtbox.global_position)
+		return dir * kb_force
