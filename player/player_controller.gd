@@ -7,11 +7,11 @@ class_name PlayerController
 @export var br_max_distance := 300.0
 
 @onready var state_machine: StateMachine = %StateMachine
-@onready var velocity_controller: VelocityController = %VelocityController
-@onready var momentum_velocity: PlayerMomentumVelocity = %Momentum
-
 @onready var s_free : PlayerStateFree = %Free
 @onready var s_hit : State = %Hit
+
+@onready var velocity_controller: VelocityController = %VelocityController
+@onready var v_momentum: PlayerMomentumVelocity = %Momentum
 
 #region process
 func _death(hitbox: HitBox) -> void:

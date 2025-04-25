@@ -1,11 +1,11 @@
 extends State
 class_name PlayerStateFree
 
-@onready var momentum_layer: PlayerMomentumVelocity = %Momentum
+@onready var v_momentum: PlayerMomentumVelocity = %Momentum
 
 func _ready() -> void:
 	state_entered.connect(enter)
 
 func enter(from: State) -> void:
-	momentum_layer.enabled = true
+	v_momentum.enabled = true
 	
