@@ -1,3 +1,4 @@
+@icon("res://textures/icon/state.svg")
 extends Node
 class_name State
 

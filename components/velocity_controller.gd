@@ -1,3 +1,4 @@
+@icon("res://textures/icon/velocity_controller.svg")
 extends Node
 class_name VelocityController
 

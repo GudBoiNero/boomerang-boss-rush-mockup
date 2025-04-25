@@ -1,3 +1,4 @@
+@icon("res://textures/icon/velocity.svg")
 extends Node
 class_name Velocity
 

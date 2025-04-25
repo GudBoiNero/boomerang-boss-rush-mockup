@@ -39,6 +39,8 @@ var _active : bool = false :
 	set(value):
 		_active = value
 		if !_active:
+			## We wanna clear _registered just in case we hit something-
+			##-then immediately deactivate
 			_registered.clear()
 
 #region process

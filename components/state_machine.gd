@@ -1,3 +1,4 @@
+@icon("res://textures/icon/state_machine.svg")
 extends Node
 class_name StateMachine
 
