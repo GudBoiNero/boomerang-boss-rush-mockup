@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://bcivy702ssbiv"]
+[gd_scene load_steps=9 format=4 uid="uid://bcivy702ssbiv"]
 
 [ext_resource type="PackedScene" uid="uid://bg7lby2s4ti1h" path="res://player/player.tscn" id="1_2mgkc"]
 [ext_resource type="Texture2D" uid="uid://g8xsp2ag3ttx" path="res://textures/tile/tile.png" id="2_tsgde"]
 [ext_resource type="Texture2D" uid="uid://b0tm0x40lv6p6" path="res://textures/tile/wall.png" id="3_pmfem"]
+[ext_resource type="Script" uid="uid://bjnol0fqcv05f" path="res://components/hitbox.gd" id="4_w32yo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_712nc"]
+radius = 24.0208
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmfem"]
 texture = ExtResource("2_tsgde")
@@ -33,8 +37,17 @@ sources/1 = SubResource("TileSetAtlasSource_w32yo")
 
 [node name="World" type="Node2D"]
 
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(296, 296)
+script = ExtResource("4_w32yo")
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
 [node name="Player" parent="." instance=ExtResource("1_2mgkc")]
-position = Vector2(555, 281)
+position = Vector2(361, 291)
 
 [node name="Grid" type="TileMapLayer" parent="."]
 z_index = -1
