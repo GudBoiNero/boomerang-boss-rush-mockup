@@ -6,18 +6,6 @@ class_name HurtBox
 signal hitbox_entered(hitbox: HitBox)
 signal hitbox_exited(hitbox: HitBox)
 
-@export var invulnerable : bool = false
-
-func _ready() -> void:
-	hitbox_entered.connect(_on_hitbox_entered)
-	hitbox_exited.connect(_on_hitbox_exited)
-
-func _on_hitbox_entered(hitbox: HitBox) -> void:
-	pass
-
-func _on_hitbox_exited(hitbox: HitBox) -> void:
-	pass
-
 func _draw() -> void:
 	for child in get_children():
 		if child is CollisionShape2D or child is CollisionPolygon2D:
