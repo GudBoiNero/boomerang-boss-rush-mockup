@@ -12,3 +12,5 @@ func _velocity_physics_process(delta: float) -> void:
 		print(_velocity)
 		var decay := delta / context.kb_duration
 		_velocity = _velocity.lerp(Vector2.ZERO, decay)
+	if _velocity.abs() < Vector2.ONE:
+		pass
