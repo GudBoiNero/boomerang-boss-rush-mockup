@@ -48,7 +48,13 @@ func _on_area_entered(area: Area2D) -> void:
 		if area in ignore_list: return
 		if area in _registered: return 
 		_registered.push_back(area)
-		area.hitbox_entered.emit(context)
+		
+		var new_context : HitBoxContext = context.duplicate()
+		new_context.hurtbox = area
+		new_context.source = self
+		new_context.global_position = global_position
+		area.hitbox_entered.emit(new_context)
+		
 		hurtbox_entered.emit(area)
 
 func _on_area_exited(area: Area2D) -> void:

@@ -11,11 +11,12 @@ signal state_changed(to: State, from: State)
 	return INITIAL_STATE
 ).call()
 
-func set_state(new: State) -> void:
-	_state_changed(new, _state)
+func set_state(new: State, data: Variant = null) -> void:
+	_state_changed(new, _state, data)
 
-func _state_changed(to: State, from: State) -> void:
+func _state_changed(to: State, from: State, data: Variant = null) -> void:
 	state_changed.emit(to, from)
+	to.data = data
 	to.state_entered.emit(from)
 	if from:
 		from.state_exited.emit(to)

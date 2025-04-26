@@ -11,7 +11,7 @@ class_name PlayerController
 
 @onready var state_machine: StateMachine = %StateMachine
 @onready var s_free : PlayerStateFree = %Free
-@onready var s_hit : State = %Hit
+@onready var s_hit : PlayerStateHit = %Hit
 
 @onready var velocity_controller: VelocityController = %VelocityController
 @onready var v_momentum: PlayerMomentumVelocity = %Momentum
@@ -28,7 +28,7 @@ func _death(context: HitBoxContext) -> void:
 
 
 func _hit(context: HitBoxContext) -> void:
-	state_machine.set_state(s_hit)
+	state_machine.set_state(s_hit, context)
 
 
 func _physics_process(delta: float) -> void:

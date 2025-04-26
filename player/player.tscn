@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://jfdxad63xurn" path="res://player/cursor.gd" id="4_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dov6qdyj12hnt" path="res://textures/arrow.png" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://d3a8e6t65vp16" path="res://components/velocity_controller.gd" id="5_rgyib"]
-[ext_resource type="Script" uid="uid://byokxr0wnu6v0" path="res://player/states/hit.gd" id="11_kb6p2"]
+[ext_resource type="Script" uid="uid://byokxr0wnu6v0" path="res://player/states/player_state_hit.gd" id="11_kb6p2"]
 [ext_resource type="Script" uid="uid://cdc4av2l4aynn" path="res://components/hurtbox.gd" id="12_ebec5"]
 [ext_resource type="Script" uid="uid://pwyr8bf10odi" path="res://components/knockback_velocity.gd" id="14_kb6p2"]
 

@@ -5,6 +5,16 @@ class_name State
 signal state_entered(from: State)
 signal state_exited(to: State)
 
+var data : Variant : 
+	set(value): 
+		## This allows us to insert some boundaries and keep-
+		##-state transferred data safer
+		assert(_is_data_valid(value))
+		data = value
+
+func _is_data_valid(value: Variant) -> bool:
+	return true
+
 func _ready() -> void:
 	state_entered.connect(_state_entered)
 	state_exited.connect(_state_exited)

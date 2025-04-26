@@ -7,7 +7,14 @@ signal on_unstore(velocity: Vector2)
 signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 
 ## Enables processing
-@export var enabled : bool = true
+@export var enabled : bool = true :
+	set(value):
+		enabled = value
+		if !enabled:
+			_disabled()
+			clear()
+		else:
+			_enabled()
 
 @export_group("Collision")
 @export var STOP_ON_DIRECT_COLLISION : bool = false
@@ -32,6 +39,12 @@ var _stored_velocity : Vector2 = Vector2.ZERO
 #region process
 func _init() -> void:
 	on_move_and_slide.connect(_on_move_and_slide)
+
+func _enabled() -> void:
+	pass
+
+func _disabled() -> void:
+	pass
 
 func _process(delta: float) -> void:
 	if enabled && !storing:
