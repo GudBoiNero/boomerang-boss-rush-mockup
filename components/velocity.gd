@@ -80,6 +80,8 @@ func get_stored_velocity() -> Vector2:
 
 func start() -> void:
 	_active = true
+	if _paused:
+		resume()
 	_paused = false
 	on_start.emit()
 	_velocity_start()
