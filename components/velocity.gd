@@ -3,9 +3,9 @@ extends Node
 class_name Velocity
 
 signal on_start
-signal on_stop
-signal on_pause
-signal on_resume
+signal on_stop(velocity: Vector2)
+signal on_pause(stored_velocity: Vector2)
+signal on_resume(stored_velocity: Vector2)
 signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 
 @export_group("Collision")
@@ -93,7 +93,7 @@ func stop() -> void:
 	_velocity = Vector2.ZERO
 	_active = false
 	_paused = false
-	on_stop.emit()
+	on_stop.emit(get_velocity(true))
 	_velocity_stop()
 
 func resume() -> void:
@@ -102,7 +102,7 @@ func resume() -> void:
 		_paused = false
 		_velocity = _stored_velocity
 		_stored_velocity = Vector2.ZERO
-		on_resume.emit()
+		on_resume.emit(get_velocity(true))
 		_velocity_resume()
 
 func pause() -> void:
@@ -111,7 +111,7 @@ func pause() -> void:
 		_paused = true
 		_stored_velocity = _velocity
 		_velocity = Vector2.ZERO
-		on_pause.emit()
+		on_pause.emit(get_velocity(true))
 		_velocity_pause()
 
 func active() -> bool:
