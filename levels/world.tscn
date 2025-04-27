@@ -12,7 +12,7 @@ damage = 0
 does_kb = true
 kb_duration = 0.2
 kb_stun = 0.1
-kb_force = 200000.0
+kb_force = 100000.0
 kb_type = 1
 kb_direction = Vector2(0, 0)
 metadata/_custom_type_script = "uid://dawmsuyqp4bqv"
@@ -50,13 +50,79 @@ sources/1 = SubResource("TileSetAtlasSource_w32yo")
 [node name="World" type="Node2D"]
 
 [node name="HitBox" type="Area2D" parent="."]
-position = Vector2(296, 296)
+position = Vector2(403, 257)
 script = ExtResource("4_w32yo")
 context = SubResource("Resource_vons5")
 always_active = true
 metadata/_custom_type_script = "uid://bjnol0fqcv05f"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox2" type="Area2D" parent="."]
+position = Vector2(366, 247)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox2"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox3" type="Area2D" parent="."]
+position = Vector2(328, 268)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox3"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox4" type="Area2D" parent="."]
+position = Vector2(322, 306)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox4"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox5" type="Area2D" parent="."]
+position = Vector2(358, 332)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox5"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox6" type="Area2D" parent="."]
+position = Vector2(400, 324)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox6"]
+shape = SubResource("CircleShape2D_712nc")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="HitBox7" type="Area2D" parent="."]
+position = Vector2(414, 289)
+script = ExtResource("4_w32yo")
+context = SubResource("Resource_vons5")
+always_active = true
+metadata/_custom_type_script = "uid://bjnol0fqcv05f"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox7"]
 shape = SubResource("CircleShape2D_712nc")
 debug_color = Color(1, 0, 0, 0.419608)
 

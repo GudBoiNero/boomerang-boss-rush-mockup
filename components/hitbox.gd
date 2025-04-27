@@ -77,6 +77,6 @@ func deactivate() -> void:
 func _draw() -> void:
 	for child in get_children():
 		if child is CollisionShape2D:
-			child.debug_color = Color.RED 
+			child.debug_color = Color.RED if _active or always_active else Color.GRAY
 			child.debug_color.a8 = 107
 #endregion
