@@ -17,7 +17,7 @@ func set_state(new: State, data: Variant = null) -> void:
 func _state_changed(to: State, from: State, data: Variant = null) -> void:
 	_state = to
 	state_changed.emit(to, from)
-	to.data = data
+	to.set_data(data)
 	to.state_entered.emit(from)
 	if from:
 		from.state_exited.emit(to)

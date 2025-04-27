@@ -5,12 +5,7 @@ class_name State
 signal state_entered(from: State)
 signal state_exited(to: State)
 
-var data : Variant : 
-	set(value): 
-		## This allows us to insert some boundaries and keep-
-		##-state transferred data safer
-		assert(_is_data_valid(value))
-		data = value
+var _data : Variant
 
 func _is_data_valid(value: Variant) -> bool:
 	return true
@@ -30,3 +25,15 @@ func _state_process(delta: float) -> void:
 
 func _state_physics_process(delta: float) -> void:
 	pass
+
+func get_data() -> Variant:
+	return _data
+
+func set_data(data: Variant) -> void:
+	## This allows us to insert some boundaries and keep-
+	##-state transferred data safer
+	assert(_is_data_valid(data))
+	_data = data
+
+func clear_data() -> void:
+	_data = null

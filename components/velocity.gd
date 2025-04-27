@@ -8,7 +8,6 @@ signal on_pause(velocity: Vector2)
 signal on_resume(velocity: Vector2)
 signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 
-@export_group("Collision")
 @export var STOP_ON_DIRECT_COLLISION : bool = false
 @export_range(0.0, 180, 0.001, "degrees") var DIRECT_ANGLE_MARGIN : float = 45
 
@@ -57,6 +56,7 @@ func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> v
 		var slide_vector := _velocity.slide(normal)
 
 		if STOP_ON_DIRECT_COLLISION:
+			print("yes")
 			if is_direct_collision(velocity, collision, DIRECT_ANGLE_MARGIN):
 				_velocity = Vector2.ZERO
 		else:
@@ -80,6 +80,14 @@ func get_velocity(and_pause: bool = false) -> Vector2:
 
 func get_stored_velocity() -> Vector2:
 	return _stored_velocity
+
+func set_velocity(velocity: Vector2) -> void:
+	_velocity = velocity
+
+## Allows one velocity
+func merge(velocity: Velocity, and_pause: bool = false) -> void:
+	_velocity += velocity.get_velocity(and_pause)
+	velocity._velocity = Vector2.ZERO
 
 func start() -> void:
 	if active():

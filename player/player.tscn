@@ -30,7 +30,7 @@ size = Vector2(10, 8)
 
 [node name="Player" type="CharacterBody2D"]
 floor_stop_on_slope = false
-floor_block_on_wall = false
+floor_max_angle = 0.0
 script = ExtResource("1_qhqgy")
 br_distance_curve = SubResource("CurveTexture_g6k8r")
 br_charge_time = null
