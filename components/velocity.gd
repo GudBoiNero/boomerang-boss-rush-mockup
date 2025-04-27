@@ -54,7 +54,7 @@ func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> v
 
 	if collision:
 		var normal := collision.get_normal()
-		var slide_vector := velocity.slide(normal)
+		var slide_vector := _velocity.slide(normal)
 
 		if STOP_ON_DIRECT_COLLISION:
 			if is_direct_collision(velocity, collision, DIRECT_ANGLE_MARGIN):

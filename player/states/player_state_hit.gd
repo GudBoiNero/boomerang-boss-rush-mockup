@@ -12,7 +12,7 @@ func _is_data_valid(value: Variant) -> bool:
 
 func _state_entered(from: State) -> void:
 	var _data : Variant = data
-	v_momentum.stop()
+	v_momentum.start()
 	v_kb.context = data
 	v_kb.start()
 	await v_kb.kb_finished
