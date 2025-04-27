@@ -4,8 +4,8 @@ class_name Velocity
 
 signal on_start
 signal on_stop(velocity: Vector2)
-signal on_pause(stored_velocity: Vector2)
-signal on_resume(stored_velocity: Vector2)
+signal on_pause(velocity: Vector2)
+signal on_resume(velocity: Vector2)
 signal on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D)
 
 @export_group("Collision")
