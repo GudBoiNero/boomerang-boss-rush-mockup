@@ -118,4 +118,6 @@ metadata/_custom_type_script = "uid://brdqq4wkc4kok"
 [node name="Knockback" type="Node" parent="VelocityController"]
 unique_name_in_owner = true
 script = ExtResource("14_kb6p2")
+STOP_ON_DIRECT_COLLISION = true
+DIRECT_ANGLE_MARGIN = 180.0
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"

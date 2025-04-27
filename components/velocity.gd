@@ -50,14 +50,17 @@ func _velocity_physics_process(delta: float) -> void:
 	pass
 
 func _on_move_and_slide(velocity: Vector2, collision: KinematicCollision2D) -> void:
+	if !active(): return
+
 	if collision:
-		var remainder := collision.get_remainder()
 		var normal := collision.get_normal()
-
 		var slide_vector := velocity.slide(normal)
-		var angle_diff := rad_to_deg(angle_difference(velocity.angle(), slide_vector.angle()))
 
-		_velocity = slide_vector
+		if STOP_ON_DIRECT_COLLISION:
+			if is_direct_collision(velocity, collision, DIRECT_ANGLE_MARGIN):
+				_velocity = Vector2.ZERO
+		else:
+			_velocity = slide_vector
 #endregion
 
 #region helpers
