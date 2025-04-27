@@ -84,8 +84,8 @@ func get_stored_velocity() -> Vector2:
 func set_velocity(velocity: Vector2) -> void:
 	_velocity = velocity
 
-## Allows one velocity
-func merge(velocity: Velocity, and_pause: bool = false) -> void:
+## Allows one velocity to steal the velocity of another
+func steal(velocity: Velocity, and_pause: bool = false) -> void:
 	_velocity += velocity.get_velocity(and_pause)
 	velocity._velocity = Vector2.ZERO
 

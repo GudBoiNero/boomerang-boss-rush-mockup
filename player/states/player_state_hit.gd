@@ -13,7 +13,7 @@ var _stun : float = 0.0
 func _state_physics_process(delta: float) -> void:
 	_stun = max(0, _stun - delta)
 	if !is_stunned():
-		v_momentum.merge(v_kb)
+		v_momentum.steal(v_kb)
 		v_momentum.start()
 		state_machine.set_state(s_free)
 	elif v_kb.is_finished():
