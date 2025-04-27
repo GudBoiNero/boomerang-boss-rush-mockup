@@ -12,9 +12,9 @@ func _is_data_valid(value: Variant) -> bool:
 
 func _state_entered(from: State) -> void:
 	var _data : Variant = data
-	v_momentum.enabled = false
+	v_momentum.stop()
 	v_kb.context = data
-	v_kb.enabled = true
+	v_kb.start()
 	await v_kb.kb_finished
 	if _data == data:
 		state_machine.set_state(s_free)

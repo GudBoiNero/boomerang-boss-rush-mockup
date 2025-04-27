@@ -5,11 +5,11 @@ signal kb_finished(context: HitBoxContext)
 
 var context : HitBoxContext = null
 
-func _enabled() -> void:
+func _velocity_start() -> void:
 	if context:
 		_velocity = context.get_kb() * get_physics_process_delta_time()
 
-func _disabled() -> void:
+func _velocity_stop() -> void:
 	context = null
 
 func _velocity_physics_process(delta: float) -> void:

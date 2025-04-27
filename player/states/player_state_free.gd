@@ -8,5 +8,5 @@ func _ready() -> void:
 	state_entered.connect(enter)
 
 func enter(from: State) -> void:
-	v_momentum.enabled = true
-	v_kb.enabled = false
+	v_momentum.start()
+	v_kb.stop()
