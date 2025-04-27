@@ -6,6 +6,7 @@ class_name HitBoxContext
 @export_group("Knockback")
 @export var does_kb : bool = false
 @export var kb_duration : float = 0.2
+@export var kb_stun : float = 0.0
 ## force of knockback
 @export var kb_force : float = 10_000.0
 ## TODO: Implement

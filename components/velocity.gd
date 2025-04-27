@@ -82,6 +82,8 @@ func get_stored_velocity() -> Vector2:
 	return _stored_velocity
 
 func start() -> void:
+	if active():
+		return
 	_active = true
 	if _paused:
 		resume()
@@ -90,6 +92,8 @@ func start() -> void:
 	_velocity_start()
 
 func stop() -> void:
+	if !active():
+		return
 	_velocity = Vector2.ZERO
 	_active = false
 	_paused = false

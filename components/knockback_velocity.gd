@@ -3,18 +3,19 @@ class_name KnockbackVelocity
 
 signal kb_finished(context: HitBoxContext)
 
-var context : HitBoxContext = null
+var _context : HitBoxContext = null
 
-func _velocity_start() -> void:
+func use(context: HitBoxContext) -> void:
 	if context:
-		_velocity = context.get_kb() * get_physics_process_delta_time()
+		_context = context
+		_velocity = _context.get_kb() * get_physics_process_delta_time()
 
 func _velocity_stop() -> void:
-	context = null
+	_context = null
 
 func _velocity_physics_process(delta: float) -> void:
-	if context:
-		var decay := delta / context.kb_duration
+	if _context:
+		var decay := delta / _context.kb_duration
 		_velocity = _velocity.lerp(Vector2.ZERO, decay)
 	if _velocity.abs() < Vector2.ONE:
-		kb_finished.emit(context.duplicate())
+		kb_finished.emit(_context.duplicate())

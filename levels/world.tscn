@@ -11,6 +11,7 @@ script = ExtResource("2_i8ckm")
 damage = 0
 does_kb = true
 kb_duration = 0.05
+kb_stun = 2.0
 kb_force = 200000.0
 kb_type = 1
 kb_direction = Vector2(0, 0)

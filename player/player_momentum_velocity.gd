@@ -17,7 +17,6 @@ var speed_state : SpeedStates = SpeedStates.WALK
 
 func _velocity_physics_process(delta: float) -> void:
 	var input := PlayerInputService.get_move_input()
-	print(input)
 
 	update_speed_state(delta)
 	update_velocity(input, delta)
