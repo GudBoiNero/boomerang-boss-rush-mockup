@@ -71,15 +71,10 @@ func is_throw_just_pressed() -> bool:
 
 
 func is_throw_just_released() -> bool:
-	var throw_r : bool = Input.is_action_pressed("throw_right")
-	var throw_l : bool = Input.is_action_pressed("throw_left")
-	var throw_just_r : bool = Input.is_action_just_released("throw_right")
-	var throw_just_l : bool = Input.is_action_just_released("throw_left")
-
 	return (
-		throw_just_l and !throw_r
+		Input.is_action_just_released("throw_left") and !Input.is_action_pressed("throw_right")
 	) or (
-		throw_just_r and !throw_l
+		Input.is_action_just_released("throw_right") and !Input.is_action_pressed("throw_left")
 	)
 
 
