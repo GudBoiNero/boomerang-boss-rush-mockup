@@ -81,6 +81,7 @@ func is_throw_just_released() -> bool:
 func last_throw_held() -> int:
 	return _held_last
 
+
 func current_throw_held() -> int:
 	return _held_current
 
