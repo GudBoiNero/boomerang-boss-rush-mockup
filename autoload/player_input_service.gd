@@ -11,6 +11,7 @@ var _held_r : int = -1
 var _held_current : int = 0
 var _held_last : int = _held_current
 
+
 #region process
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouse:
@@ -58,8 +59,6 @@ func handle_find_held_current() -> void:
 			_held_l = 1
 			_held_r = 1
 #endregion process
-
-
 
 
 func is_throw_pressed() -> bool:
