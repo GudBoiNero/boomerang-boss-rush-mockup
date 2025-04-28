@@ -1,8 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmuqrvu4p4wse"]
+[gd_scene load_steps=8 format=3 uid="uid://dmuqrvu4p4wse"]
 
 [ext_resource type="Script" uid="uid://c4ilxeggfhf14" path="res://player/boomerang.gd" id="1_c7gwn"]
 [ext_resource type="Texture2D" uid="uid://bwnigy3oubx0i" path="res://textures/projectile/boomerang.png" id="1_cd8sf"]
 [ext_resource type="Script" uid="uid://bjnol0fqcv05f" path="res://components/hitbox.gd" id="2_sheky"]
+[ext_resource type="Script" uid="uid://dawmsuyqp4bqv" path="res://components/hitbox_context.gd" id="3_al46a"]
+
+[sub_resource type="Resource" id="Resource_ko17o"]
+script = ExtResource("3_al46a")
+damage = 1
+does_kb = false
+kb_duration = 0.2
+kb_stun = 0.0
+kb_force = 10000.0
+kb_type = 1
+kb_direction = Vector2(0, 0)
+metadata/_custom_type_script = "uid://dawmsuyqp4bqv"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sheky"]
 
@@ -10,12 +22,17 @@
 radius = 7.0
 
 [node name="Boomerang" type="CharacterBody2D"]
+collision_layer = 2
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("1_c7gwn")
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_sheky")
+context = SubResource("Resource_ko17o")
 always_active = true
 metadata/_custom_type_script = "uid://bjnol0fqcv05f"
 
@@ -27,8 +44,8 @@ debug_color = Color(1, 0, 0, 0.419608)
 shape = SubResource("CircleShape2D_cd8sf")
 
 [node name="SpriteAnchor" type="Node2D" parent="."]
-rotation = -0.785398
 
 [node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
+rotation = -0.785398
 scale = Vector2(1, 1)
 texture = ExtResource("1_cd8sf")

@@ -1,7 +1,17 @@
 extends Node2D
 
 var is_kbm: bool = true
+var player : PlayerController = null
 
+## -1 = unused since last throw
+## 0 = used but then unheld
+## 1 = used
+var _held_l : int = -1
+var _held_r : int = -1
+var _held_current : int = 0
+var _held_last : int = _held_current
+
+#region process
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey or event is InputEventMouse:
 		if !is_kbm:
@@ -13,8 +23,71 @@ func _input(event: InputEvent) -> void:
 		is_kbm = false
 
 
-func is_holding_throw() -> bool:
+func _physics_process(delta: float) -> void:
+	handle_find_held_current()
+
+
+func handle_find_held_current() -> void:
+	_held_last = _held_current
+
+	var throw_r : bool = Input.is_action_pressed("throw_right")
+	var throw_l : bool = Input.is_action_pressed("throw_left")
+	var throw_just_r : bool = Input.is_action_just_released("throw_right")
+	var throw_just_l : bool = Input.is_action_just_released("throw_left")
+
+	if !is_throw_pressed():
+		_held_current = 0
+		_held_l = -1
+		_held_r = -1
+	else:
+		## Just released L
+		if throw_just_l:
+			_held_l = 0
+		## Just released R
+		if throw_just_r:
+			_held_r = 0
+		## Holding L only
+		if !throw_r and throw_l:
+			_held_l = 1
+			_held_current = -1
+		## Holding R only
+		elif throw_r and !throw_l:
+			_held_r = 1
+			_held_current = 1
+		else:
+			_held_l = 1
+			_held_r = 1
+#endregion process
+
+
+
+
+func is_throw_pressed() -> bool:
 	return Input.is_action_pressed("throw_left") or Input.is_action_pressed("throw_right")
+
+
+func is_throw_just_pressed() -> bool:
+	return Input.is_action_just_pressed("throw_left") or Input.is_action_just_pressed("throw_right")
+
+
+func is_throw_just_released() -> bool:
+	var throw_r : bool = Input.is_action_pressed("throw_right")
+	var throw_l : bool = Input.is_action_pressed("throw_left")
+	var throw_just_r : bool = Input.is_action_just_released("throw_right")
+	var throw_just_l : bool = Input.is_action_just_released("throw_left")
+
+	return (
+		throw_just_l and !throw_r
+	) or (
+		throw_just_r and !throw_l
+	)
+
+
+func last_throw_held() -> int:
+	return _held_last
+
+func current_throw_held() -> int:
+	return _held_current
 
 
 func get_move_input_raw() -> Vector2:
@@ -48,8 +121,7 @@ func get_move_input() -> Vector2:
 
 
 func get_aim_input() -> Vector2:
-	var rect := get_viewport().get_visible_rect().size
-	var center := rect / 2
+	if !player: return Vector2.ZERO
 
 	var joypads := Input.get_connected_joypads()
 	var input_vec := Vector2.ZERO
@@ -67,7 +139,7 @@ func get_aim_input() -> Vector2:
 			if raw_input.length() >= deadzone:
 				input_vec = raw_input.normalized()
 	elif input_vec == Vector2.ZERO:
-		var mouse_vec := get_local_mouse_position() - center + get_viewport_transform().get_origin()
+		var mouse_vec := get_global_mouse_position() - player.position
 		input_vec = mouse_vec.normalized()
 
 	return input_vec

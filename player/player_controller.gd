@@ -17,6 +17,9 @@ class_name PlayerController
 @onready var v_momentum: PlayerMomentumVelocity = %Momentum
 @onready var v_knockback: KnockbackVelocity = %Knockback
 
+func _init() -> void:
+	PlayerInputService.player = self
+
 func _ready() -> void:
 	health_component.health_depleted.connect(_death)
 	hurtbox.hitbox_entered.connect(_hit)
