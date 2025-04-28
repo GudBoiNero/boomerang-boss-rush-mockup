@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 		boomerang.initial_strength = _held / TIME_TO_MAX
 		boomerang.direction = aim
 		boomerang.curve_left = PlayerInputService.last_throw_held() == -1
-		print(boomerang.curve_left)
 
 		get_parent().get_parent().add_child(boomerang)
 		_held = 0.0
