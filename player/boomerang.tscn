@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bwnigy3oubx0i" path="res://textures/projectile/boomerang.png" id="1_cd8sf"]
 [ext_resource type="Script" uid="uid://bjnol0fqcv05f" path="res://components/hitbox.gd" id="2_sheky"]
 [ext_resource type="Script" uid="uid://dawmsuyqp4bqv" path="res://components/hitbox_context.gd" id="3_al46a"]
-[ext_resource type="Script" uid="uid://brdqq4wkc4kok" path="res://components/velocity.gd" id="5_ko17o"]
+[ext_resource type="Script" uid="uid://lgstk6ai63ap" path="res://player/boomerang_velocity.gd" id="5_ko17o"]
 
 [sub_resource type="Resource" id="Resource_ko17o"]
 script = ExtResource("3_al46a")
@@ -48,9 +48,9 @@ shape = SubResource("CircleShape2D_cd8sf")
 [node name="SpriteAnchor" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
-rotation = -0.785398
 texture = ExtResource("1_cd8sf")
 
 [node name="Velocity" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("5_ko17o")
 metadata/_custom_type_script = "uid://brdqq4wkc4kok"
