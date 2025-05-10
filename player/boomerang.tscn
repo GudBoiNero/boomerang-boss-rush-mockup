@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmuqrvu4p4wse"]
+[gd_scene load_steps=9 format=3 uid="uid://dmuqrvu4p4wse"]
 
 [ext_resource type="Script" uid="uid://c4ilxeggfhf14" path="res://player/boomerang.gd" id="1_c7gwn"]
 [ext_resource type="Texture2D" uid="uid://bwnigy3oubx0i" path="res://textures/projectile/boomerang.png" id="1_cd8sf"]
 [ext_resource type="Script" uid="uid://bjnol0fqcv05f" path="res://components/hitbox.gd" id="2_sheky"]
 [ext_resource type="Script" uid="uid://dawmsuyqp4bqv" path="res://components/hitbox_context.gd" id="3_al46a"]
+[ext_resource type="Script" uid="uid://brdqq4wkc4kok" path="res://components/velocity.gd" id="5_ko17o"]
 
 [sub_resource type="Resource" id="Resource_ko17o"]
 script = ExtResource("3_al46a")
@@ -26,6 +27,7 @@ collision_layer = 2
 slide_on_ceiling = false
 floor_stop_on_slope = false
 floor_block_on_wall = false
+platform_floor_layers = 4294967040
 script = ExtResource("1_c7gwn")
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -47,5 +49,8 @@ shape = SubResource("CircleShape2D_cd8sf")
 
 [node name="Sprite" type="Sprite2D" parent="SpriteAnchor"]
 rotation = -0.785398
-scale = Vector2(1, 1)
 texture = ExtResource("1_cd8sf")
+
+[node name="Velocity" type="Node" parent="."]
+script = ExtResource("5_ko17o")
+metadata/_custom_type_script = "uid://brdqq4wkc4kok"

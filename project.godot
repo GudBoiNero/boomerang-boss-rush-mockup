@@ -32,6 +32,16 @@ gdscript/warnings/unsafe_cast=1
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/compose/plugin.cfg")
+
+[global_group]
+
+component="Single function element of an entity."
+component_unique="Only one type of controller allowed on entity."
+entity="Container and controller of components."
+
 [input]
 
 left={
